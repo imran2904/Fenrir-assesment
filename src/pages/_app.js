@@ -8,13 +8,12 @@ export default function App({ Component, pageProps }) {
   const router = useRouter();
 
   useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    if (saved) {
-      setTheme(saved);
-      document.documentElement.classList.toggle(
-        "dark",
-        saved === "dark"
-      );
+    const saved = localStorage.getItem("theme") || "light";
+    setTheme(saved);
+    if (saved === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
     }
   }, []);
 
@@ -22,13 +21,14 @@ export default function App({ Component, pageProps }) {
     const newTheme = theme === "dark" ? "light" : "dark";
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
-    document.documentElement.classList.toggle(
-      "dark",
-      newTheme === "dark"
-    );
+    if (newTheme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
   };
 
-  const noLayoutRoutes = ["/"]; 
+  const noLayoutRoutes = ["/"];
 
   if (noLayoutRoutes.includes(router.pathname)) {
     return <Component {...pageProps} />;

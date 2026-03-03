@@ -1,12 +1,14 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   html {
-    @apply bg-white text-neutral-900;
+    @apply bg-white text-gray-900;
   }
 
   html.dark {
-    @apply bg-[#0F0F0F] text-neutral-100;
+    @apply bg-[#0F0F0F] text-gray-100;
   }
 
   body {
