@@ -1,17 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  html {
-    @apply bg-white text-gray-900;
-  }
+@variant dark (.dark &);
 
-  html.dark {
-    @apply bg-[#0F0F0F] text-gray-100;
-  }
-
-  body {
-    @apply min-h-screen;
-  }
+body {
+  min-height: 100vh;
 }
+
+
