@@ -88,11 +88,11 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-full md:w-1/2 flex items-center justify-center relative bg-transparent px-6 py-12 z-10">
+      <div className="w-full md:w-1/2 flex items-center justify-center relative bg-transparent px-4 sm:px-6 py-6 sm:py-12 z-10">
 
-        <div className="w-full max-w-md bg-white rounded-[32px] overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] p-10 transform translate-x-2">
+        <div className="w-full max-w-md bg-white rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] p-6 sm:p-10 md:transform md:translate-x-2">
 
-          <h2 className="text-[36px] font-bold text-center text-[#1A1A1A] tracking-tight">
+          <h2 className="text-[28px] sm:text-[36px] font-bold text-center text-[#1A1A1A] tracking-tight">
             Sign up
           </h2>
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,11 +10,14 @@ import {
   faBell,
   faGear,
   faCircleQuestion,
-  faTimes
+  faTimes,
+  faArrowRightFromBracket,
+  faExclamationCircle
 } from "@fortawesome/free-solid-svg-icons";
 
 const SideBar = ({ isOpen, onClose }) => {
   const router = useRouter();
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const navItems = [
     { name: "Dashboard", icon: faChartLine, path: "/dashboard" },
@@ -25,6 +28,11 @@ const SideBar = ({ isOpen, onClose }) => {
     { name: "Settings", icon: faGear, path: "/settings" },
     { name: "Support", icon: faCircleQuestion, path: "/support" }
   ];
+
+  const handleLogout = () => {
+    setShowLogoutModal(false);
+    router.push("/");
+  };
 
   return (
     <>
@@ -79,6 +87,16 @@ const SideBar = ({ isOpen, onClose }) => {
           })}
         </nav>
 
+        <div className="border-t border-gray-200 dark:border-[#2A2A2A] flex-shrink-0">
+          <button
+            onClick={() => setShowLogoutModal(true)}
+            className="w-full flex items-center gap-3 px-7 py-3 text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/10 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+          >
+            <FontAwesomeIcon icon={faArrowRightFromBracket} className="w-4 h-4" />
+            <span className="text-sm font-medium">Logout</span>
+          </button>
+        </div>
+
         <div className="p-4 border-t border-gray-200 dark:border-[#2A2A2A] flex-shrink-0">
           <div className="flex items-center gap-3 px-3 py-2">
             <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-pink-500 rounded-full flex items-center justify-center">
@@ -91,6 +109,41 @@ const SideBar = ({ isOpen, onClose }) => {
           </div>
         </div>
       </aside>
+
+      {showLogoutModal && (
+        <div className="fixed inset-0 bg-black/50 z-[100] flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-[#1A1A1A] rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-6">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 bg-yellow-100 dark:bg-yellow-900/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <FontAwesomeIcon icon={faExclamationCircle} className="w-6 h-6 text-yellow-600 dark:text-yellow-500" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                  Logout?
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Are you sure you want to logout?
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-3">
+              <button
+                onClick={() => setShowLogoutModal(false)}
+                className="flex-1 px-6 py-3 border-2 border-gray-300 dark:border-[#2A2A2A] rounded-xl text-gray-700 dark:text-gray-300 font-semibold hover:bg-gray-50 dark:hover:bg-[#2A2A2A] transition-colors"
+              >
+                No
+              </button>
+              <button
+                onClick={handleLogout}
+                className="flex-1 px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-xl text-white font-semibold transition-colors"
+              >
+                Yes
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SideBar from "../SideBar";
-import NavHeader from "./NavHeader";
+import NavHeader from "../NavHeader";
 
 const BaseLayout = ({ children, theme, toggleTheme }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);

@@ -78,39 +78,37 @@ const NavHeader = ({ theme, toggleTheme, onMenuClick }) => {
       </div>
 
       <div className="flex items-center gap-2 lg:gap-4 flex-shrink-0">
-        <div className="hidden sm:flex items-center gap-2 lg:gap-3">
-          <span className="text-xs lg:text-sm font-medium text-gray-700 dark:text-gray-300">
+        <div className="flex items-center gap-2 lg:gap-3">
+          <span className="hidden sm:inline text-xs lg:text-sm font-medium text-gray-700 dark:text-gray-300">
             {theme === "dark" ? "Dark" : "Light"}
           </span>
           
           <button
             onClick={toggleTheme}
-            className="relative w-14 h-7 lg:w-16 lg:h-8 rounded-full transition-colors duration-300 focus:outline-none border-[2px] border-green-600"
+            className="relative w-12 h-6 sm:w-14 sm:h-7 lg:w-16 lg:h-8 rounded-full transition-colors duration-300 focus:outline-none border-[2px] border-green-600"
             style={{
               backgroundColor: theme === "dark" ? "#1e3a8a" : "#60a5fa",
             }}
             aria-label="Toggle theme"
           >
             <div
-              className={`absolute left-1 top-1 w-5 h-5 lg:w-6 lg:h-6 rounded-full bg-yellow-400 flex items-center justify-center transition-all duration-300 ${
+              className={`absolute left-1 top-0.5 w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 rounded-full bg-yellow-400 flex items-center justify-center transition-all duration-300 ${
                 theme === "dark" ? "opacity-0 scale-0" : "opacity-100 scale-100"
               }`}
             >
             </div>
 
             <div
-              className={`absolute right-1 top-1 w-5 h-5 lg:w-6 lg:h-6 rounded-full bg-white flex items-center justify-center transition-all duration-300 ${
+              className={`absolute right-1 top-0.5 w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 rounded-full bg-white flex items-center justify-center transition-all duration-300 ${
                 theme === "dark" ? "opacity-100 scale-100" : "opacity-0 scale-0"
               }`}
             >
               
-              <div className="absolute -top-0.5 -left-1 w-1 h-1 bg-white rounded-full"></div>
-              <div className="absolute top-1 -left-2 w-0.5 h-0.5 bg-white rounded-full"></div>
             </div>
 
             <div
-              className={`absolute top-1 w-5 h-5 lg:w-6 lg:h-6 rounded-full bg-white shadow-md transition-all duration-300 ${
-                theme === "dark" ? "translate-x-7 lg:translate-x-8" : "translate-x-1"
+              className={`absolute top-0.5 w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 rounded-full bg-white shadow-md transition-all duration-300 ${
+                theme === "dark" ? "translate-x-5 sm:translate-x-7 lg:translate-x-8" : "translate-x-1"
               }`}
             />
           </button>

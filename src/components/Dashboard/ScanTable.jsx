@@ -64,7 +64,7 @@ const ScanTable = ({ scans }) => {
             {scans.map((scan) => (
               <tr
                 key={scan.id}
-                onClick={() => router.push(`/scan/${scan.id}`)}
+                onClick={() => router.push("/scan-detail")}
                 className="hover:bg-gray-50 dark:hover:bg-[#2A2A2A] cursor-pointer transition-colors"
               >
                 <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-100">
