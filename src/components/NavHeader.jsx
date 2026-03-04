@@ -54,12 +54,9 @@ const NavHeader = ({ theme, toggleTheme, onMenuClick }) => {
                 />
               )}
               {index === 0 ? (
-                <button
-                  onClick={() => router.push(crumb.path)}
-                  className="flex items-center gap-1.5 text-gray-500 dark:text-gray-400 hover:text-[#0CC8A8] transition-colors flex-shrink-0"
-                >
+                <div className="flex items-center gap-1.5 text-gray-500 dark:text-gray-400">
                   <FontAwesomeIcon icon={crumb.icon} className="w-3 h-3" />
-                </button>
+                </div>
               ) : (
                 <button
                   onClick={() => !crumb.isLast && router.push(crumb.path)}

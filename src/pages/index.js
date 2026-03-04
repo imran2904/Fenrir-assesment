@@ -164,13 +164,13 @@ export default function Home() {
           </form>
 
           <div className="mt-7 flex justify-between gap-3.5">
-            <button className="flex-1 bg-black text-white h-14 rounded-full flex items-center justify-center hover:opacity-90 transition-opacity">
+            <button className="flex-1 bg-black text-white h-14 rounded-[24px] flex items-center justify-center hover:opacity-90 transition-opacity">
               <FontAwesomeIcon icon={faApple} size="lg" />
             </button>
-            <button className="flex-1 bg-[#F5F1EE] h-14 rounded-full flex items-center justify-center hover:bg-[#ece7e4] transition-colors">
+            <button className="flex-1 bg-[#F5F1EE] h-14 rounded-[24px] flex items-center justify-center hover:bg-[#ece7e4] transition-colors">
               <Image src="/Images/google-icon.svg" width={100} height={100} className="w-6 h-6" alt="Google" />
             </button>
-            <button className="flex-1 bg-[#4E77E7] text-white h-14 rounded-full flex items-center justify-center hover:opacity-90 transition-opacity">
+            <button className="flex-1 bg-[#4E77E7] text-white h-14 rounded-[24px] flex items-center justify-center hover:opacity-90 transition-opacity">
               <Image src="/Images/meta-icon.svg" width={100} height={100} className="w-8 h-8" alt="Meta" />
             </button>
           </div>

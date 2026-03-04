@@ -16,7 +16,7 @@ const BaseLayout = ({ children, theme, toggleTheme }) => {
           onMenuClick={() => setSidebarOpen(true)}
         />
         
-        <main className="flex-1 p-4 lg:p-6 bg-[#F5F5F5] dark:bg-[#0F0F0F] overflow-y-auto">
+        <main className="flex-1  bg-[#F5F5F5] dark:bg-[#0F0F0F] overflow-y-auto">
           {children}
         </main>
       </div>
