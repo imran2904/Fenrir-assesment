@@ -4,7 +4,7 @@ import { faWrench, faClock } from "@fortawesome/free-solid-svg-icons";
 
 const UnderDevelopment = ({ pageName = "This Page" }) => {
   return (
-    <div className="flex items-center justify-center min-h-[60vh]">
+    <div className="flex items-center justify-center min-h-[60vh] h-full overflow-auto">
       <div className="text-center space-y-8 max-w-lg px-4">
         <div className="relative inline-block">
           <div className="w-24 h-24 md:w-32 md:h-32 bg-[#0CC8A8]/10 dark:bg-[#0CC8A8]/20 rounded-2xl flex items-center justify-center mx-auto border-2 border-[#0CC8A8]/30">

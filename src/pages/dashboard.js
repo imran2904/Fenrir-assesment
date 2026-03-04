@@ -146,7 +146,7 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="px-2">
-        <div className="space-y-4 p-4 bg-white dark:bg-[#1A1A1A] rounded-lg">
+        <div className="space-y-4 py-4 px-2 sm:p-4 bg-white dark:bg-[#1A1A1A] rounded-lg">
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
             <div className="flex-1 relative">
               <input
@@ -154,7 +154,7 @@ const Dashboard = () => {
                 placeholder="Search scans..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-2.5 pl-10 bg-white dark:bg-[#0F0F0F] border border-gray-300 dark:border-[#2A2A2A] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#0CC8A8] focus:border-transparent"
+                className="w-full px-2 sm:px-4 py-2.5 pl-10 bg-white dark:bg-[#0F0F0F] border border-gray-300 dark:border-[#2A2A2A] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#0CC8A8] focus:border-transparent"
               />
               <FontAwesomeIcon
                 icon={faMagnifyingGlass}
@@ -164,7 +164,7 @@ const Dashboard = () => {
             <div className="flex gap-2">
               <button 
                 onClick={() => setShowFilterModal(true)}
-                className="flex-1 sm:flex-none px-4 py-2.5 border border-gray-300 dark:border-[#2A2A2A] rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#2A2A2A] transition-colors flex items-center justify-center gap-2 relative"
+                className="flex-1 sm:flex-none px-2 sm:px-4 py-2.5 border border-gray-300 dark:border-[#2A2A2A] rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#2A2A2A] transition-colors flex items-center justify-center gap-2 relative"
               >
                 <FontAwesomeIcon icon={faFilter} className="w-4 h-4" />
                 <span className="hidden sm:inline">Filter</span>
@@ -176,14 +176,14 @@ const Dashboard = () => {
               </button>
               <button 
                 onClick={() => setShowColumnModal(true)}
-                className="flex-1 sm:flex-none px-4 py-2.5 border border-gray-300 dark:border-[#2A2A2A] rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#2A2A2A] transition-colors flex items-center justify-center gap-2"
+                className="flex-1 sm:flex-none px-2 sm:px-4 py-2.5 border border-gray-300 dark:border-[#2A2A2A] rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#2A2A2A] transition-colors flex items-center justify-center gap-2"
               >
                 <FontAwesomeIcon icon={faTableColumns} className="w-4 h-4" />
                 <span className="hidden sm:inline">Column</span>
               </button>
               <button
                 onClick={() => setShowNewScanModal(true)}
-                className="flex-1 sm:flex-none px-5 py-2.5 bg-[#0CC8A8] text-white rounded-lg text-sm font-semibold hover:bg-[#0bb39a] transition-colors flex items-center justify-center gap-2"
+                className="flex-1 sm:flex-none px-2 sm:px-4 py-2.5 bg-[#0CC8A8] text-white rounded-lg text-sm font-semibold hover:bg-[#0bb39a] transition-colors flex items-center justify-center gap-2"
               >
                 <FontAwesomeIcon icon={faPlus} className="w-4 h-4" />
                 New scan

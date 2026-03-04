@@ -76,15 +76,15 @@ const NavHeader = ({ theme, toggleTheme, onMenuClick }) => {
 
       <div className="flex items-center gap-2 lg:gap-4 flex-shrink-0">
         <div className="flex items-center gap-2 lg:gap-3">
-          <span className="hidden sm:inline text-xs lg:text-sm font-medium text-gray-700 dark:text-gray-300">
+          <span className=" text-xs lg:text-sm font-medium text-gray-700 dark:text-gray-300">
             {theme === "dark" ? "Dark" : "Light"}
           </span>
           
           <button
             onClick={toggleTheme}
-            className="relative w-12 h-6 sm:w-14 sm:h-7 lg:w-16 lg:h-8 rounded-full transition-colors duration-300 focus:outline-none border-[2px] border-green-600"
+            className="relative w-12 h-6 sm:w-14 sm:h-7 lg:w-16 lg:h-8 rounded-full transition-colors duration-300 focus:outline-none border-[2px] border-zinc-500 dark:border-green-600"
             style={{
-              backgroundColor: theme === "dark" ? "#1e3a8a" : "#60a5fa",
+              backgroundColor: theme === "dark" ? "#1e3a8a" : "#a5cdfd",
             }}
             aria-label="Toggle theme"
           >
