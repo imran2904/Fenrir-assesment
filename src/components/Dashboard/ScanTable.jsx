@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 
-const ScanTable = ({ scans }) => {
+const ScanTable = ({ scans, visibleColumns }) => {
   const router = useRouter();
 
   const getStatusStyle = (status) => {
@@ -40,24 +40,36 @@ const ScanTable = ({ scans }) => {
         <table className="w-full">
           <thead className="bg-gray-50 dark:bg-[#0F0F0F] border-b border-gray-200 dark:border-[#2A2A2A]">
             <tr className="text-nowrap">
-              <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                Scan Name
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                Type
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                Status
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                Progress
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                Vulnerability
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                Last Scan
-              </th>
+              {visibleColumns.name && (
+                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                  Scan Name
+                </th>
+              )}
+              {visibleColumns.type && (
+                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                  Type
+                </th>
+              )}
+              {visibleColumns.status && (
+                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                  Status
+                </th>
+              )}
+              {visibleColumns.progress && (
+                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                  Progress
+                </th>
+              )}
+              {visibleColumns.vulnerability && (
+                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                  Vulnerability
+                </th>
+              )}
+              {visibleColumns.lastScan && (
+                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                  Last Scan
+                </th>
+              )}
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 dark:divide-[#2A2A2A]">
@@ -67,41 +79,53 @@ const ScanTable = ({ scans }) => {
                 onClick={() => router.push("/scan-detail")}
                 className="hover:bg-gray-50 dark:hover:bg-[#2A2A2A] cursor-pointer transition-colors"
               >
-                <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-100">
-                  {scan.name}
-                </td>
-                <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">
-                  {scan.type}
-                </td>
-                <td className="px-6 py-4">
-                  <span className={`inline-flex px-3 py-1 text-xs font-medium rounded-full ${getStatusStyle(scan.status)}`}>
-                    {scan.status}
-                  </span>
-                </td>
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-3">
-                    <div className="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-2 min-w-[80px] max-w-[120px]">
-                      <div
-                        className="bg-[#0CC8A8] h-2 rounded-full transition-all"
-                        style={{ width: `${scan.progress}%` }}
-                      ></div>
-                    </div>
-                    <span className="text-xs font-medium text-gray-600 dark:text-gray-400">
-                      {scan.progress}%
+                {visibleColumns.name && (
+                  <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-100">
+                    {scan.name}
+                  </td>
+                )}
+                {visibleColumns.type && (
+                  <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">
+                    {scan.type}
+                  </td>
+                )}
+                {visibleColumns.status && (
+                  <td className="px-6 py-4">
+                    <span className={`inline-flex px-3 py-1 text-xs font-medium rounded-full ${getStatusStyle(scan.status)}`}>
+                      {scan.status}
                     </span>
-                  </div>
-                </td>
-                <td className="px-6 py-4">
-                  <div className="flex gap-1.5">
-                    <VulnerabilityBadge count={scan.vulnerabilities.critical} severity="critical" />
-                    <VulnerabilityBadge count={scan.vulnerabilities.high} severity="high" />
-                    <VulnerabilityBadge count={scan.vulnerabilities.medium} severity="medium" />
-                    <VulnerabilityBadge count={scan.vulnerabilities.low} severity="low" />
-                  </div>
-                </td>
-                <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">
-                  {scan.lastScan}
-                </td>
+                  </td>
+                )}
+                {visibleColumns.progress && (
+                  <td className="px-6 py-4">
+                    <div className="flex items-center gap-3">
+                      <div className="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-2 min-w-[80px] max-w-[120px]">
+                        <div
+                          className="bg-[#0CC8A8] h-2 rounded-full transition-all"
+                          style={{ width: `${scan.progress}%` }}
+                        ></div>
+                      </div>
+                      <span className="text-xs font-medium text-gray-600 dark:text-gray-400">
+                        {scan.progress}%
+                      </span>
+                    </div>
+                  </td>
+                )}
+                {visibleColumns.vulnerability && (
+                  <td className="px-6 py-4">
+                    <div className="flex gap-1.5">
+                      <VulnerabilityBadge count={scan.vulnerabilities.critical} severity="critical" />
+                      <VulnerabilityBadge count={scan.vulnerabilities.high} severity="high" />
+                      <VulnerabilityBadge count={scan.vulnerabilities.medium} severity="medium" />
+                      <VulnerabilityBadge count={scan.vulnerabilities.low} severity="low" />
+                    </div>
+                  </td>
+                )}
+                {visibleColumns.lastScan && (
+                  <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">
+                    {scan.lastScan}
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>

@@ -2,18 +2,15 @@ import React, { useState } from "react";
 import { activeScanData } from "@/data/mockData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faSpider,
-    faMap,
-    faFlask,
-    faCheckCircle,
-    faFileAlt,
     faChevronDown,
     faXmark,
 } from "@fortawesome/free-solid-svg-icons";
+import ProgressTracker from "./ProgressTracker";
 
 const ScanConsole = () => {
     const [activeTab, setActiveTab] = useState("activity");
     const [consoleExpanded, setConsoleExpanded] = useState(true);
+    const [scanStopped, setScanStopped] = useState(false);
 
     const getSeverityColor = (severity) => {
         switch (severity) {
@@ -30,21 +27,8 @@ const ScanConsole = () => {
         }
     };
 
-    const getStepIcon = (iconName) => {
-        switch (iconName) {
-            case "spider":
-                return faSpider;
-            case "map":
-                return faMap;
-            case "flask":
-                return faFlask;
-            case "check-circle":
-                return faCheckCircle;
-            case "file-alt":
-                return faFileAlt;
-            default:
-                return faCheckCircle;
-        }
+    const handleToggleScan = () => {
+        setScanStopped(!scanStopped);
     };
 
     return (
@@ -53,114 +37,23 @@ const ScanConsole = () => {
                 <button className="px-3 md:px-4 py-2 border border-gray-300 dark:border-[#2A2A2A] rounded-lg text-xs md:text-sm font-medium hover:bg-gray-50 dark:hover:bg-[#2A2A2A] transition-colors">
                     Export Report
                 </button>
-                <button className="px-3 md:px-4 py-2 bg-red-500/20 dark:bg-red-500/10 text-red-500 rounded-lg text-xs md:text-sm font-medium hover:bg-red-600/20 transition-colors">
-                    Stop Scan
+                <button 
+                    onClick={handleToggleScan}
+                    className={`px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-colors ${
+                        scanStopped 
+                            ? 'bg-[#0CC8A8]/20 dark:bg-[#0CC8A8]/10 text-[#0CC8A8] hover:bg-[#0CC8A8]/30'
+                            : 'bg-red-500/20 dark:bg-red-500/10 text-red-500 hover:bg-red-600/20'
+                    }`}
+                >
+                    {scanStopped ? 'Restart Scan' : 'Stop Scan'}
                 </button>
             </div>
 
-            <div className="bg-white dark:bg-[#1A1A1A] rounded-xl border border-gray-200 dark:border-[#2A2A2A] overflow-hidden">
-                <div className="flex p-4  flex-col md:flex-row items-center gap-6 md:gap-8 lg:gap-16">
-                    <div className="flex-shrink-0 mx-auto md:mx-0 md:border-e-2 border-gray-200 dark:border-[#2A2A2A] md:pe-6">
-                        <div className="relative w-24 h-24 md:w-28 md:h-28 bg-[#1A1D29] rounded-full flex items-center justify-center">
-
-                            <div className="flex flex-col items-center justify-center">
-                                <div className="text-2xl md:text-3xl font-bold text-[#0CC8A8]">
-                                    {activeScanData.progress}%
-                                </div>
-                                <div className="text-[10px] text-gray-400 mt-0.5">
-                                    {activeScanData.status}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="flex-1 min-w-0 w-full md:pt-2">
-                        <div className="relative md:border-b-2 border-gray-200 dark:border-[#2A2A2A] pb-4 mb-4">
-                            <div className="hidden md:block absolute top-7 left-0 right-0 h-[1px] bg-gray-200 dark:bg-[#2A2A2A]"></div>
-
-                            <div className="flex items-start justify-between overflow-x-auto pb-2 md:pb-0">
-                                {activeScanData.steps.map((step, index) => (
-                                    <div
-                                        key={index}
-                                        className="relative flex flex-col items-center gap-2 md:gap-3 z-10 min-w-[60px] md:min-w-0"
-                                    >
-                                        <div
-                                            className={`w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-colors ${step.active
-                                                    ? "bg-[#0CC8A8] text-white"
-                                                    : "bg-gray-100 dark:bg-[#2A2A2A] text-gray-400 dark:text-gray-500"
-                                                }`}
-                                        >
-                                            <FontAwesomeIcon
-                                                icon={getStepIcon(step.icon)}
-                                                className="w-4 h-4 md:w-5 md:h-5"
-                                            />
-                                        </div>
-                                        <span
-                                            className={`text-xs md:text-sm whitespace-nowrap ${step.active
-                                                    ? "text-gray-900 dark:text-white font-medium"
-                                                    : "text-gray-500 dark:text-gray-400"
-                                                }`}
-                                        >
-                                            {step.name}
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 lg:gap-8 text-sm">
-                            <div>
-                                <div className="text-gray-500 dark:text-gray-400 text-xs mb-1.5">
-                                    Scan Type
-                                </div>
-                                <div className="font-semibold text-gray-900 dark:text-white text-xs md:text-sm">
-                                    {activeScanData.metadata.scanType}
-                                </div>
-                            </div>
-                            <div>
-                                <div className="text-gray-500 dark:text-gray-400 text-xs mb-1.5">
-                                    Targets
-                                </div>
-                                <div className="font-semibold text-gray-900 dark:text-white text-xs md:text-sm break-all">
-                                    {activeScanData.metadata.targets}
-                                </div>
-                            </div>
-                            <div>
-                                <div className="text-gray-500 dark:text-gray-400 text-xs mb-1.5">
-                                    Started At
-                                </div>
-                                <div className="font-semibold text-gray-900 dark:text-white text-xs md:text-sm">
-                                    {activeScanData.metadata.startedAt}
-                                </div>
-                            </div>
-                            <div>
-                                <div className="text-gray-500 dark:text-gray-400 text-xs mb-1.5">
-                                    Credentials
-                                </div>
-                                <div className="font-semibold text-gray-900 dark:text-white text-xs md:text-sm">
-                                    {activeScanData.metadata.credentials}
-                                </div>
-                            </div>
-                            <div>
-                                <div className="text-gray-500 dark:text-gray-400 text-xs mb-1.5">
-                                    Files
-                                </div>
-                                <div className="font-semibold text-gray-900 dark:text-white text-xs md:text-sm">
-                                    {activeScanData.metadata.files}
-                                </div>
-                            </div>
-                            <div>
-                                <div className="text-gray-500 dark:text-gray-400 text-xs mb-1.5">
-                                    Checklists
-                                </div>
-                                <div className="font-semibold text-[#0CC8A8] text-xs md:text-sm">
-                                    {activeScanData.metadata.checklists}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <ProgressTracker 
+                steps={activeScanData.steps} 
+                metadata={activeScanData.metadata}
+                isStopped={scanStopped}
+            />
 
             <div className="bg-white dark:bg-[#1A1A1A] rounded-lg border border-gray-200 dark:border-[#2A2A2A] overflow-hidden">
                 <div className="flex items-center justify-between p-3 md:p-4 border-b border-gray-200 dark:border-[#2A2A2A]">
